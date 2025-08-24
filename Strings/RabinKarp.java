@@ -6,7 +6,7 @@ public class RabinKarp {
         long hash=0;
         long m=str2.length();
         for(int i=0;i<str2.length();i++){
-            hash+=(str2.charAt(i)*(long)Math.pow(26,m-i-1));
+            hash=(hash+(str2.charAt(i)*(long)Math.pow(26,m-i-1))%101)%101;
         }
         return hash;
 
@@ -21,7 +21,10 @@ public class RabinKarp {
             return 0;
         }
         for(int i=m;i<n;i++){
-            long curr=(initial-(str1.charAt(i-m))*(long)Math.pow(26,m-1))*26 + str1.charAt(i);
+            long h = (long)Math.pow(26, m - 1) % 101;
+            long curr = ( ( (initial - (str1.charAt(i - m) * h) % 101 + 101) % 101 ) * 26 ) % 101;
+            curr = (curr + str1.charAt(i)) % 101;
+
             if(curr==patternHash && str1.substring(i-m+1,i+1).equals(str2) ){
                return i-m+1;
             }
