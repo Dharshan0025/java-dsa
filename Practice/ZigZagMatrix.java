@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
+// zigzag for square matrix
 public class ZigZagMatrix {
     public List<Integer> zigzag(int[][] nums){
         List<Integer>list=new ArrayList<>();
@@ -24,7 +24,22 @@ public class ZigZagMatrix {
             }
           }
         }
-
+        for(int i=1;i<n;i++){
+          int pt1=i;
+          int pt2=n-1;
+          if(i%2==0){
+            while(pt2>=1 && pt1<=n-1){
+               list.add(nums[pt2--][pt1++]);
+            }
+          } 
+          else{
+            while(pt1<=n-1 && pt2>=1){
+                list.add(nums[pt1++][pt2--]);
+               
+            }
+          }
+            
+        }
         return list;
 
     }
