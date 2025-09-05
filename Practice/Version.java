@@ -2,6 +2,12 @@ package Practice;
 
 import java.util.Scanner;
 
+/*
+ *Print whether the version is upgraded, downgraded or not changed according to the input given.
+example: Input : Version1 4.8.2 Version2 4.8.4 Output: upgraded, Input : Version1 4.0.2 Version2 4.8.4 Output: downgraded
+
+ */
+
 public class Version {
 
     public String compare(String v1,String v2){
@@ -11,26 +17,24 @@ public class Version {
         StringBuilder sb2=new StringBuilder();
         System.out.println(arr[1]);
         System.out.println(arr[3]);
-    
         
+        int n=arr[1].length();
+        int m=arr[3].length();
         
-        for(int i=0;i<arr[1].length();i++){
-          if(Character.isDigit(arr[1].charAt(i))){
-            sb1.append(arr[1].charAt(i));
+        int i=0;
+        int j=0;
+        while(i<n && j<m){
+          if(arr[1].charAt(i)>arr[3].charAt(i)){
+            return "dowmgraded";
+          }else if(arr[1].charAt(i)<arr[3].charAt(i)){
+            return "upgraded";
+          }else{
+            i++;
+            j++;
           }
+
         }
-        for(int i=0;i<arr[3].length();i++){
-            if(Character.isDigit(arr[3].charAt(i))){
-              sb2.append(arr[3].charAt(i));
-            }
-        }
-
-        int ver1=Integer.parseInt(sb1.toString());
-        int ver2=Integer.parseInt(sb2.toString());
-
-
-       return ver1>ver2?"downgraded":"upgraded";
-
+        return "not changed";
     }
 
     public static void main(String[] args) {
