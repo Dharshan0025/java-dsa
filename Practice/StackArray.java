@@ -15,23 +15,19 @@ public class StackArray {
     }
 
     public boolean isEmpty(){
-        for(int i=0;i<pt;i++){
-            if(stack[i]>1){
-                return false;
-            }
-        }
-        return true;
+  
+        return pt==0? true:false;
 
     }
     public int size(){
-
+        
         return pt;
 
     }
 
     public int top(){
         if(pt==0){
-            return stack[0];
+            return -1;
         }
 
         System.out.println("pt is"+pt);
@@ -45,7 +41,7 @@ public class StackArray {
           stack[pt++]=num;
           return num+" sucessfully pushed";
        }
-       return "stack overflow or undeflow";
+       return "stack overflow";
     }
     public int pop(){
         int res=-1;
@@ -57,10 +53,14 @@ public class StackArray {
 
     }
     public String swap(int idx1,int idx2){
+
+        if (idx1 < 0 || idx1 >= pt || idx2 < 0 || idx2 >= pt) {
+            return "Invalid indices for swap";
+        }
         int temp=stack[idx1];
         stack[idx1]=stack[idx2];
         stack[idx2]=temp;
-        return "swapped";
+        return idx1+" swapped "+idx2;
     }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
